@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import './App.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
@@ -28,7 +30,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>⚛️🔥💬</h1>
+        <h1>💌 tell-u</h1>
         <SignOut />
       </header>
 
@@ -54,8 +56,11 @@ function SignIn() {
 }
 
 function SignOut() {
-  return auth.currentUser && (
-    <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
+  const handleSignOut = () => auth.signOut();
+  return (
+    auth.currentUser && (
+      <button className="sign-out" onClick={handleSignOut}><FontAwesomeIcon icon={faRightFromBracket} /></button>
+    )
   );
 }
 
@@ -80,8 +85,10 @@ function ChatRoom() {
     })
 
     setFormValue('');
-    dummy.current.scrollIntoView({behavior: 'smooth'});
-  }
+    dummy.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleInputChange = (e) => setFormValue(e.target.value);
 
   return (
     <>
@@ -90,7 +97,7 @@ function ChatRoom() {
         <div ref={dummy}></div>
       </main>
       <form onSubmit={sendMessage}>
-        <input value={formValue} onChange={(e) => setFormValue(e.target.value)} />
+        <input value={formValue} onChange={handleInputChange} />
         <button>🕊️</button>
       </form>
     </>
