@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import './App.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
@@ -48,8 +49,8 @@ function SignIn() {
 
   return (
     <>
-      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
-      <p>Do not violate the community guidelines or you will be banned for life!</p>
+      <button className="sign-in" onClick={signInWithGoogle}><FontAwesomeIcon icon={faGoogle} className="GoogleIcon" /> Sign In</button>
+      <p className="Guidelines">Do not violate the community guidelines or you will be banned for life!</p>
     </>
   );
 }
@@ -92,12 +93,12 @@ function ChatRoom() {
   return (
     <>
       <main>
-        {messages && messages.map((msg) => <ChatMessage key={msg.key} message={msg} />)}
+        {messages && messages.map((msg) => <ChatMessage key={msg.id} message={msg} />)}
         <div ref={dummy}></div>
       </main>
       <form onSubmit={sendMessage}>
         <input value={formValue} onChange={handleInputChange} />
-        <button>🕊️</button>
+        <button type="submit" disabled={!formValue} placeholder="Say something...">🕊️</button>
       </form>
     </>
   );
