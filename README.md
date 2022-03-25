@@ -1,6 +1,6 @@
 # 💌 tell-u chat
 
-> A simple Chat App, built using React and Firebase.
+> A simple Chat App, built using React and Firebase. Login using your Google credentials and leave a message on the chatroom.
 
 ![screenshot](./tell-u-screen.gif)
 
